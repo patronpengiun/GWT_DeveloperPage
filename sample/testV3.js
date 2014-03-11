@@ -2,37 +2,37 @@
  * javascript unit tests for ajax between developer page Version1 and Server
  */
 
-var base = "https://v1sever.appspot.com";  // need to be altered
+var base = "https://v3sever.appspot.com";  // need to be altered
 
-// test for successful login 
-test("Success Login Test",function(){
+// test for successful database query
+test("Success Query Test",function(){
 	stop(1000);  // wait at most 1 second for the completion of the ajax call
-	var url = base + "/dev/login"
+	var url = base + "/dev/query"
 	var setting = {
 			data: {
 				userId: "abc@gmail.com",
-				password: "123456"
+				sql: "SELECT * FROM DB_SHARED_STATICS WHERE GAMEID = '60'"
 			},
-			type: "GET",
+			type: "POST",
 			dataType: "json"
 	};
 
 	$.ajax(url,setting).done(function (data, status, jqXHR){
 		start();
 		expect(1);
-		ok(data.success);  // the response should be like {success: true}  
+		ok(data.success);  // the response should be like {success: true, ... , ... }  
 	});
 	
 });
 
-//test for failed login (incorrect password)
-test("Fail Password Login Test",function(){
+//test for failed database query
+test("Fail Query Test",function(){
 	stop(1000);  // wait at most 1 second for the completion of the ajax call
-	var url = base + "/dev/login"
+	var url = base + "/dev/query"
 	var setting = {
 			data: {
 				userId: "abc@gmail.com",
-				password: "345678"
+				sql: "SELECT * FROM DB_PRIVATE_STATICS WHERE GAMEID = '60'" // denied because the game does not belong to the developer
 			},
 			type: "GET",
 			dataType: "json"
@@ -42,7 +42,7 @@ test("Fail Password Login Test",function(){
 		start();
 		expect(2);
 		ok(!data.success);        
-		equal(data.error,"pwd");  // the response should be like {success: false, error: "pwd"} 
+		equal(data.error,"denied");  // the response should be like {success: false, error: "denied"} 
 	});
 	
 });
