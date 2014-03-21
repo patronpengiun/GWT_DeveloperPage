@@ -16,9 +16,13 @@
   <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
-
+  
+	<inherits name ="com.github.gwtbootstrap.Bootstrap"/>
+	
+	
   <!-- Other module inherits                                      -->
-
+	<inherits name='com.github.gwtbootstrap.Bootstrap' />
+	
   <!-- Specify the app entry point class.                         -->
   <entry-point class='devPage.client.DevPage'/>
 

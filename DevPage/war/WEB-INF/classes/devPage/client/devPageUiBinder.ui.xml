@@ -1,0 +1,99 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	<g:HTMLPanel>
+	
+	<b:Hero>
+    <b:Heading size="2">Developer Page</b:Heading>
+    <b:Paragraph>Please submit your game url and info here.</b:Paragraph>
+	</b:Hero>
+	
+	<b:Form type="HORIZONTAL">
+  <b:Fieldset>
+    <b:ControlGroup>
+      <b:ControlLabel for="input01">Game Name</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+    <b:ControlGroup>
+      <b:ControlLabel for="select01">Player Number</b:ControlLabel>
+      <b:Controls>
+      		<b:ListBox b:id="playerName">
+									<g:item>2</g:item>
+									<g:item>3</g:item>
+									<g:item>4</g:item>
+									<g:item>5</g:item>
+								</b:ListBox>
+			</b:Controls>
+	  </b:ControlGroup>
+	  
+	  <b:ControlGroup>
+			<b:ControlLabel for="select02">is Turn Based</b:ControlLabel>
+      <b:Controls>
+      		<b:ListBox b:id="isTurnBased">
+									<g:item>Yes</g:item>
+									<g:item>No</g:item>
+								</b:ListBox>
+			</b:Controls>
+		</b:ControlGroup>	
+		
+		<b:ControlGroup>
+      <b:ControlLabel for="input02">Game URL</b:ControlLabel>
+      <b:Controls>
+        	<b:TextBox alternateSize="XLARGE" b:id="gameUrl"></b:TextBox>
+      </b:Controls>
+	  </b:ControlGroup>
+		
+		<b:ControlGroup>
+      <b:ControlLabel for="input03">Width</b:ControlLabel>
+      <b:Controls>
+        	<b:TextBox alternateSize="SMALL" b:id="width"></b:TextBox>
+      </b:Controls>
+      <b:ControlLabel for="input04">Length</b:ControlLabel>
+      <b:Controls>
+        	<b:TextBox alternateSize="SMALL" b:id="length"></b:TextBox>
+      </b:Controls>
+	  </b:ControlGroup>
+		
+		<b:ControlGroup>
+			<b:ControlLabel for="select03">Has AI</b:ControlLabel>
+      <b:Controls>
+      		<b:ListBox b:id="hasAI">
+									<g:item>Yes</g:item>
+									<g:item>No</g:item>
+								</b:ListBox>
+			</b:Controls>
+		</b:ControlGroup>	
+		
+		<b:ControlGroup>
+				<b:ControlLabel for="fileInput">Upload Screenshot</b:ControlLabel>
+						<b:Controls>
+							<b:FileUpload b:id="screenShot"></b:FileUpload>
+    				</b:Controls>
+		</b:ControlGroup>
+						
+						
+		
+		<b:ControlGroup>
+			<b:ControlLabel for="input06">Game Description</b:ControlLabel>
+			<b:Controls>
+      		<b:TextArea b:id="textarea"
+									visibleLines="6"></b:TextArea> 
+			</b:Controls>	
+    </b:ControlGroup>
+    
+    <b:ControlGroup>
+			<b:Controls>
+      		<b:Button ui:field="submitBtn" type="PRIMARY" >Submit</b:Button>     		
+			</b:Controls>	
+    </b:ControlGroup>
+    
+  </b:Fieldset>
+	</b:Form>
+
+	
+	</g:HTMLPanel>
+</ui:UiBinder> 
