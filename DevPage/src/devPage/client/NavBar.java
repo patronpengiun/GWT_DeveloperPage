@@ -34,6 +34,14 @@ public class NavBar extends Composite{
 	          }
 		});
 		
+		update.addClickHandler(new ClickHandler(){
+			@Override
+	          public void onClick(ClickEvent event) {
+					RootPanel.get("content").clear();
+					RootPanel.get("content").add(new updateGame());
+	          }
+		});
+		
 		upBtn.addClickHandler(new ClickHandler(){
 			@Override
 	          public void onClick(ClickEvent event) {
@@ -42,6 +50,7 @@ public class NavBar extends Composite{
 					dialog.showModal();
 	          }
 		});
+		
 	}
 	
 }

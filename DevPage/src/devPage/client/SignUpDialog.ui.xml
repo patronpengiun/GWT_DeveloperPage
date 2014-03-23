@@ -2,9 +2,69 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
 	<b:Modal ui:field="signUpModal" title="Sign Up" backdrop="STATIC">
-	     <g:Label>Modal Content!</g:Label>
-	     <b:ModalFooter>
-	         <b:Button icon="FILE">Save</b:Button>
-	     </b:ModalFooter>
+	     <b:Form type="HORIZONTAL">
+  <b:Fieldset>
+    <b:ControlGroup>
+      <b:ControlLabel for="email">Email*</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="email"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+    <b:ControlGroup>
+      <b:ControlLabel for="password">Password*</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="password"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+	  
+	  <b:ControlGroup>
+      <b:ControlLabel for="fname">Fisrt Name</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="fname"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+     <b:ControlGroup>
+      <b:ControlLabel for="mname">Middle Name</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="mname"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+     <b:ControlGroup>
+      <b:ControlLabel for="lname">Last Name</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="lname"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+     <b:ControlGroup>
+      <b:ControlLabel for="nickname">Nick Nmae</b:ControlLabel>
+      <b:Controls>
+        <!-- If you add id attribute to element,You should use b:id attribute. -->
+        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="nickname"></b:TextBox>
+      </b:Controls>
+    </b:ControlGroup>
+    
+    
+    <b:ControlGroup>
+			<b:Controls>
+				<b:Paragraph>
+      		<b:Button ui:field="creatBtn" type="PRIMARY" >Creat</b:Button>     		
+      		<b:Button ui:field="backBtn" type="PRIMARY" > Back </b:Button>   
+      	</b:Paragraph>
+			</b:Controls>	
+    </b:ControlGroup>
+    
+    
+    
+  </b:Fieldset>
+	</b:Form>
 	 </b:Modal>
 </ui:UiBinder>
