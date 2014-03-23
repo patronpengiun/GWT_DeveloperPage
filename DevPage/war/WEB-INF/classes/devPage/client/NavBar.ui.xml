@@ -23,8 +23,8 @@
 	         	 <b:NavForm alignment="RIGHT" size="2">
 	         	 	<b:TextBox placeholder="username" alternateSize="SMALL" ui:id="navbar-username"></b:TextBox>
 	         	 	<b:PasswordTextBox placeholder="password" alternateSize="SMALL" ui:id="navbar-password"></b:PasswordTextBox>
-	         	 	<b:Button addStyleNames="{style.in-btn}">Sign in</b:Button>
-	         	 	<b:Button>Sign up</b:Button>
+	         	 	<b:Button addStyleNames="{style.in-btn}" ui:field="inBtn">Sign in</b:Button>
+	         	 	<b:Button ui:field="upBtn">Sign up</b:Button>
 	         	 </b:NavForm>
 	         </b:NavCollapse>
 	     </b:Navbar>

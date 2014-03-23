@@ -1,0 +1,10 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	<b:Modal ui:field="signUpModal" title="Sign Up" backdrop="STATIC">
+	     <g:Label>Modal Content!</g:Label>
+	     <b:ModalFooter>
+	         <b:Button icon="FILE">Save</b:Button>
+	     </b:ModalFooter>
+	 </b:Modal>
+</ui:UiBinder>

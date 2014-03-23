@@ -1,5 +1,6 @@
 package devPage.client;
 
+import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -15,6 +16,9 @@ public class NavBar extends Composite{
 	@UiField
 	NavLink account,upload,update,delete,dashboard,database;
 	
+	@UiField
+	Button upBtn,inBtn;
+	
 	interface NavBarUiBinder extends UiBinder<Widget, NavBar> {}
 	
 	private static NavBarUiBinder uiBinder = GWT.create(NavBarUiBinder.class);
@@ -27,6 +31,15 @@ public class NavBar extends Composite{
 	          public void onClick(ClickEvent event) {
 					RootPanel.get("content").clear();
 					RootPanel.get("content").add(new uploadGame());
+	          }
+		});
+		
+		upBtn.addClickHandler(new ClickHandler(){
+			@Override
+	          public void onClick(ClickEvent event) {
+					SignUpDialog dialog = new SignUpDialog();
+					RootPanel.get().add(dialog);
+					dialog.showModal();
 	          }
 		});
 	}
