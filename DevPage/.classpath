@@ -5,7 +5,6 @@
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/liangfang/git/GWT_DeveloperPage/appengine-api-labs-1.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/liangfang/git/GWT_DeveloperPage/gwt-bootstrap-2.3.2.0.jar"/>
+	<classpathentry kind="lib" path="bin/gwt-bootstrap-2.3.2.0.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

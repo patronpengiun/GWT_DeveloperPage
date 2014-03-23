@@ -1,5 +1,9 @@
 /** Add css rules here for your application. */
 
+.navbar-form .span2 {
+	display:none;
+}
+
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -13,6 +17,10 @@ h1 {
 .sendButton {
   display: block;
   font-size: 16pt;
+}
+
+#navbar-username, #navbar-password{
+	margin-right:5px;
 }
 
 /** Most GWT widgets already have a style name defined */
