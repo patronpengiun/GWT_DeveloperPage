@@ -52,9 +52,9 @@
       <b:Controls>
         	<b:TextBox alternateSize="SMALL" b:id="width" ui:field="width"></b:TextBox>
       </b:Controls>
-      <b:ControlLabel for="input04">Length</b:ControlLabel>
+      <b:ControlLabel for="input04">Height</b:ControlLabel>
       <b:Controls>
-        	<b:TextBox alternateSize="SMALL" b:id="length" ui:field="length"></b:TextBox>
+        	<b:TextBox alternateSize="SMALL" b:id="height" ui:field="height"></b:TextBox>
       </b:Controls>
 	  </b:ControlGroup>
 		

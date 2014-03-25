@@ -28,5 +28,6 @@ public class DevPage implements EntryPoint {
 		
 		RootPanel.get("NavBar").add(new NavBar());
 		RootPanel.get("content").add(imgDiv);
+		RootPanel.get("prompt-modal").add(PromptDialog.getDialog());
 	}
 }

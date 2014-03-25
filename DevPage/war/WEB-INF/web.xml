@@ -5,7 +5,6 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
 
   <!-- Default page to serve -->
   <welcome-file-list>

@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:base="com.github.gwtbootstrap.client.ui.base"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	
+	<ui:style>
+	    .ok-btn {margin-top:30px; float:right;}
+  	</ui:style>
+	
+	<b:Modal ui:field="prompt" backdrop="STATIC">
+		<g:Label ui:field="text"></g:Label>
+		<b:Button type="PRIMARY" addStyleNames="{style.ok-btn}" ui:field="btn">OK</b:Button>
+	</b:Modal>
+</ui:UiBinder>
