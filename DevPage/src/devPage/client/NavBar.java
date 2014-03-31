@@ -66,6 +66,14 @@ public class NavBar extends Composite{
 	          }
 		});
 		
+		delete.addClickHandler(new ClickHandler(){
+			@Override
+	          public void onClick(ClickEvent event) {
+					RootPanel.get("content").clear();
+					RootPanel.get("content").add(new deleteGame());
+	          }
+		});
+		
 		upBtn.addClickHandler(new ClickHandler(){
 			@Override
 	          public void onClick(ClickEvent event) {
