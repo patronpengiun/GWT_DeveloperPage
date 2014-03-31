@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+  xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+  
+  <ui:style>
+    .table-style {
+      border: 1px solid black;
+    }
+  </ui:style>
+    
+  <g:HTMLPanel>
+  
+  <b:Hero>
+    <b:Heading size="2">Game Delete</b:Heading>
+  </b:Hero>
+  
+  
+   <g:FlexTable ui:field="table" styleName="{style.table-style}" borderWidth="2" />
+  
+  </g:HTMLPanel>
+</ui:UiBinder> 
