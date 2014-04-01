@@ -8,7 +8,7 @@
     }
   </ui:style>
     
-  <g:HTMLPanel>
+  <g:HTMLPanel ui:field="panel">
   
   <b:Hero>
     <b:Heading size="2">Game Delete</b:Heading>
@@ -18,7 +18,7 @@
    <g:FlexTable ui:field="table" styleName="{style.table-style}" borderWidth="2" />
  
 
-   <b:Paragraph ui:field="noGameWarning">Sorry, you haven't submitted game.</b:Paragraph>
+   <b:Paragraph ui:field="noGameWarning"></b:Paragraph>
 
   </g:HTMLPanel>
 </ui:UiBinder> 

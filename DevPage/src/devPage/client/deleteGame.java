@@ -16,6 +16,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.json.client.JSONArray;
@@ -32,6 +33,9 @@ import com.google.gwt.http.client.Response;
 
 public class deleteGame extends Composite {
 	@UiField
+	HTMLPanel panel;
+	
+	@UiField
 	FlexTable table;
 	
 	@UiField
@@ -43,6 +47,7 @@ public class deleteGame extends Composite {
 	}
 
 	public deleteGame() {
+		
 		initWidget(binder.createAndBindUi(this));
 
 		// get currnet developer's all games info
@@ -57,8 +62,7 @@ public class deleteGame extends Composite {
 		try {
 			builder.sendRequest(data.toString(), new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
-					dialog.show("Oops",
-							"Getting your games' info failed, please try again.");
+					dialog.show("Oops","Getting your games' info failed, please try again.");
 				}
 
 				public void onResponseReceived(Request request,
@@ -91,9 +95,12 @@ public class deleteGame extends Composite {
 	}
 
 	protected void updateTable(JSONArray array) {
-		
+		noGameWarning.setVisible(false);
 		if(array.size() == 0){
-			RootPanel.get().add(noGameWarning);
+			
+			noGameWarning.setText("Sorry, you haven't submitted game.");
+			noGameWarning.setVisible(true);
+			panel.add(noGameWarning);
 		}
 		else{
 			table.insertRow(0);
@@ -115,10 +122,8 @@ public class deleteGame extends Composite {
 
 				table.setWidget(i + 1, 2, getDelButton(gameInfo.get("gameId").toString()));
 			}
-			RootPanel.get().add(table);
+			panel.add(table);
 		}
-
-		
 
 	}
 
@@ -132,15 +137,15 @@ public class deleteGame extends Composite {
 				 */
 				JSONObject data = new JSONObject();
 				SessionInfo info = SessionInfo.getSessionInfo();
-				String url = "http://2-dot-smg-server.appspot.com/games/"
-						+ gameID + "?developerId=" + info.getDevId()
+				String url = "http://2.smg-server.appspot.com/games/"  + gameID.substring(1, gameID.length()-1) 
+						+ "?developerId=" + info.getDevId()
 						+ "&accessSignature=" + info.getSignature();
 
 				final PromptDialog dialog = PromptDialog.getDialog();
 
 				RequestBuilder builder = new RequestBuilder(RequestBuilder.DELETE, url);
 				try {
-					builder.sendRequest(data.toString(), new RequestCallback() {
+					builder.sendRequest("", new RequestCallback() {
 						public void onError(Request request, Throwable exception) {
 							dialog.show("Oops","Delet game failed, please try again.");
 						}
@@ -153,8 +158,10 @@ public class deleteGame extends Composite {
 
 								if (ret.get("success") != null) {
 									dialog.show("Success","The game has been deleted.");
-									RootPanel.get("content").clear();
-									RootPanel.get("content").add(new deleteGame());
+									
+									//table.clear();
+									panel.clear();
+									panel.add(new deleteGame());
 
 								} else {
 									dialog.show("Oops",
@@ -174,5 +181,6 @@ public class deleteGame extends Composite {
 		});
 		return delBtn;
 	}
+
 
 }

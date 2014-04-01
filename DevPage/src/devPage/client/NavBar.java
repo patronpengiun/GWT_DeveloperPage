@@ -89,7 +89,7 @@ public class NavBar extends Composite{
 	          public void onClick(ClickEvent event) {
 				JSONObject data = new JSONObject();
 				
-				String url = "http://1-dot-smg-server.appspot.com/developers/" + name.getValue() + "?password=" + password.getValue();
+				String url = "http://2-dot-smg-server.appspot.com/developers/" + name.getValue() + "?password=" + password.getValue();
 				
 				final PromptDialog dialog = PromptDialog.getDialog();
 				
