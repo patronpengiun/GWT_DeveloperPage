@@ -11,25 +11,23 @@
 	<b:Form type="HORIZONTAL">
   <b:Fieldset>
     <b:ControlGroup>
-      <b:ControlLabel for="input01">Game Name</b:ControlLabel>
+      <b:ControlLabel for="input01">Game Name *</b:ControlLabel>
       <b:Controls>
         <!-- If you add id attribute to element,You should use b:id attribute. -->
         	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="name"></b:TextBox>
       </b:Controls>
     </b:ControlGroup>
-    
+      
     <b:ControlGroup>
-      <b:ControlLabel for="select01">Player Number</b:ControlLabel>
+      <b:ControlLabel for="select01">Has Tokens</b:ControlLabel>
       <b:Controls>
-      		<b:ListBox b:id="playerNum" ui:field="number">
-									<g:item>2</g:item>
-									<g:item>3</g:item>
-									<g:item>4</g:item>
-									<g:item>5</g:item>
+      		<b:ListBox b:id="hasToken" ui:field="token">
+									<g:item>False</g:item>
+									<g:item>True</g:item>
 								</b:ListBox>
 			</b:Controls>
 	  </b:ControlGroup>
-	  
+  
 	  <b:ControlGroup>
 			<b:ControlLabel for="select02">is Turn Based</b:ControlLabel>
       <b:Controls>
@@ -41,18 +39,22 @@
 		</b:ControlGroup>	
 		
 		<b:ControlGroup>
-      <b:ControlLabel for="input02">Game URL</b:ControlLabel>
+      <b:ControlLabel for="input02">Game URL *</b:ControlLabel>
       <b:Controls>
         	<b:TextBox alternateSize="XLARGE" b:id="gameUrl" ui:field="url"></b:TextBox>
       </b:Controls>
 	  </b:ControlGroup>
 		
 		<b:ControlGroup>
-      <b:ControlLabel for="input03">Width</b:ControlLabel>
+      <b:ControlLabel for="input03">Width *</b:ControlLabel>
       <b:Controls>
         	<b:TextBox alternateSize="SMALL" b:id="width" ui:field="width"></b:TextBox>
       </b:Controls>
-      <b:ControlLabel for="input04">Height</b:ControlLabel>
+      
+	  </b:ControlGroup>
+	  
+	  <b:ControlGroup>
+      <b:ControlLabel for="input04">Height *</b:ControlLabel>
       <b:Controls>
         	<b:TextBox alternateSize="SMALL" b:id="height" ui:field="height"></b:TextBox>
       </b:Controls>
@@ -78,7 +80,7 @@
 						
 		
 		<b:ControlGroup>
-			<b:ControlLabel for="input06">Game Description</b:ControlLabel>
+			<b:ControlLabel for="input06">Game Description*</b:ControlLabel>
 			<b:Controls>
       		<b:TextArea b:id="textarea" visibleLines="6" ui:field="description"></b:TextArea> 
 			</b:Controls>	

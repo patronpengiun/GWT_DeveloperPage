@@ -1,6 +1,15 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+	
+	<ui:style>
+    .table-style {
+      border: 1px solid black;
+      margin-left:60px;
+      margin-bottom:40px;
+    }
+    </ui:style>
+	
 	<g:HTMLPanel>
 	
 	<b:Hero>
@@ -8,20 +17,13 @@
     <b:Paragraph>Please submit your game update info below.</b:Paragraph>
 	</b:Hero>
 	
-	<b:Form type="HORIZONTAL">
-  <b:Fieldset>
-    <b:ControlGroup>
-    	<b:ControlLabel for="input00">Game ID</b:ControlLabel>
- 			<b:Controls>
-        	<b:TextBox alternateSize="XLARGE" b:id="gameId" ui:field="gameId"></b:TextBox>
-      </b:Controls>
-    
-    </b:ControlGroup>
-  </b:Fieldset>
-	</b:Form>
+	<g:FlexTable ui:field="table" styleName="{style.table-style}" borderWidth="2" />
+ 
+
+    <b:Paragraph ui:field="noGameWarning"></b:Paragraph>
 	
-	<b:Form type="HORIZONTAL">
-  <b:Fieldset>
+	<b:Form ui:field="form" type="HORIZONTAL">
+    <b:Fieldset>
     <b:ControlGroup>
       <b:ControlLabel for="input01">Game Name</b:ControlLabel>
       <b:Controls>
@@ -55,7 +57,7 @@
 		<b:ControlGroup>
       <b:ControlLabel for="input02">Game URL</b:ControlLabel>
       <b:Controls>
-        	<b:TextBox alternateSize="XLARGE" b:id="gameUrl" ui:field="url"></b:TextBox>
+        	<b:TextBox alternateSize="XLARGE" b:id="gameUrl" ui:field="gameurl"></b:TextBox>
       </b:Controls>
 	  </b:ControlGroup>
 		
