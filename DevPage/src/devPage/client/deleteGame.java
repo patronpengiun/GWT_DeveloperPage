@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.ListBox;
+import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.github.gwtbootstrap.client.ui.TextArea;
 import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
@@ -32,6 +33,9 @@ import com.google.gwt.http.client.Response;
 public class deleteGame extends Composite {
 	@UiField
 	FlexTable table;
+	
+	@UiField
+	Paragraph noGameWarning;
 
 	private static final Binder binder = GWT.create(Binder.class);
 
@@ -44,9 +48,9 @@ public class deleteGame extends Composite {
 		// get currnet developer's all games info
 		JSONObject data = new JSONObject();
 		SessionInfo info = SessionInfo.getSessionInfo();
-		String url = "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId=" + info.getDevId()
-				+ "&accessSignature=" + info.getSignature();
-
+		String url = "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId="
+				+ info.getDevId() + "&accessSignature=" + info.getSignature();
+		//String url = "http://2.smg-server.appspot.com/gameinfo/all";
 		final PromptDialog dialog = PromptDialog.getDialog();
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
@@ -87,28 +91,34 @@ public class deleteGame extends Composite {
 	}
 
 	protected void updateTable(JSONArray array) {
-		table = new FlexTable();
-		table.setText(0, 0, "Game ID");
-		table.setText(0, 1, "Game Name");
-		table.insertRow(array.size());
-
-		if(array.size() == 0)
-			table.setText(1, 0, "no game");
-
-		JSONObject gameInfo;
-
-		for (int i = 0; i < array.size(); i++) {
-			gameInfo = (JSONObject) array.get(i);
-			if (gameInfo.get("gameId") != null) {
-				table.setText(i + 1, 0, gameInfo.get("gameId").toString());
-			}
-			if (gameInfo.get("gameName") != null) {
-				table.setText(i + 1, 1, gameInfo.get("gameName").toString());
-			}
-
-			table.setWidget(i + 1, 2, getDelButton(gameInfo.get("gameId")
-					.toString()));
+		
+		if(array.size() == 0){
+			RootPanel.get().add(noGameWarning);
 		}
+		else{
+			table.insertRow(0);
+			table.setText(0, 0, "Game ID");
+			table.setText(0, 1, "Game Name");
+			table.setText(0, 2, "");
+			
+			JSONObject gameInfo;
+
+			for (int i = 0; i < array.size(); i++) {
+				table.insertRow(i+1);
+				gameInfo = (JSONObject) array.get(i);
+				if (gameInfo.get("gameId") != null) {
+					table.setText(i + 1, 0, gameInfo.get("gameId").toString());
+				}
+				if (gameInfo.get("gameName") != null) {
+					table.setText(i + 1, 1, gameInfo.get("gameName").toString());
+				}
+
+				table.setWidget(i + 1, 2, getDelButton(gameInfo.get("gameId").toString()));
+			}
+			RootPanel.get().add(table);
+		}
+
+		
 
 	}
 
@@ -128,25 +138,23 @@ public class deleteGame extends Composite {
 
 				final PromptDialog dialog = PromptDialog.getDialog();
 
-				RequestBuilder builder = new RequestBuilder(
-						RequestBuilder.DELETE, url);
+				RequestBuilder builder = new RequestBuilder(RequestBuilder.DELETE, url);
 				try {
 					builder.sendRequest(data.toString(), new RequestCallback() {
 						public void onError(Request request, Throwable exception) {
-							dialog.show("Oops",
-									"Delet game failed, please try again.");
+							dialog.show("Oops","Delet game failed, please try again.");
 						}
 
-						public void onResponseReceived(Request request,
-								Response response) {
+						public void onResponseReceived(Request request,Response response) {
 							if (200 == response.getStatusCode()) {
 
 								// parse the response text into JSON
 								JSONObject ret = (JSONObject) JSONParser.parseStrict(response.getText());
 
 								if (ret.get("success") != null) {
-									dialog.show("Success",
-											"The game has been deleted.");
+									dialog.show("Success","The game has been deleted.");
+									RootPanel.get("content").clear();
+									RootPanel.get("content").add(new deleteGame());
 
 								} else {
 									dialog.show("Oops",
@@ -154,8 +162,7 @@ public class deleteGame extends Composite {
 								}
 
 							} else {
-								dialog.show("Oops",
-										"Couldn't send the request.");
+								dialog.show("Oops", "Couldn't send the request.");
 							}
 						}
 					});
