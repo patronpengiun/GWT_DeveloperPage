@@ -61,7 +61,7 @@ public class SignUpDialog extends Composite{
 				data.put("lastName", new JSONString(lname.getValue()));
 				data.put("nickname", new JSONString(nickname.getValue()));
 				
-				String url = "http://1-dot-smg-server.appspot.com/developers";
+				String url = "http://3-dot-smg-server.appspot.com/user";
 				
 				final PromptDialog dialog = PromptDialog.getDialog();
 				
@@ -78,7 +78,7 @@ public class SignUpDialog extends Composite{
 							if (response.getStatusCode() == 200) { 
 								JSONObject ret = (JSONObject)JSONParser.parseStrict(response.getText());
 								if (ret.get("accessSignature") != null){
-									String id = ret.get("developerId").toString();
+									String id = ret.get("userId").toString();
 									String devName = "";
 									if (!nickname.getValue().equals(""))
 										devName = nickname.getValue();

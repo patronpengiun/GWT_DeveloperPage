@@ -17,6 +17,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -27,7 +28,7 @@ import com.google.gwt.uibinder.client.UiField;
 
 public class NavBar extends Composite{
 	@UiField
-	NavLink account,upload,update,delete,dashboard,database;
+	NavLink upload,update,delete,dashboard,database;
 	
 	@UiField
 	Button upBtn,inBtn;
@@ -89,7 +90,7 @@ public class NavBar extends Composite{
 	          public void onClick(ClickEvent event) {
 				JSONObject data = new JSONObject();
 				
-				String url = "http://2-dot-smg-server.appspot.com/developers/" + name.getValue() + "?password=" + password.getValue();
+				String url = "http://3-dot-smg-server.appspot.com/user/?email=" + name.getValue() + "&password=" + password.getValue();
 				
 				final PromptDialog dialog = PromptDialog.getDialog();
 				
@@ -105,7 +106,7 @@ public class NavBar extends Composite{
 							if (response.getStatusCode() == 200) { 
 								JSONObject ret = (JSONObject)JSONParser.parseStrict(response.getText());
 								if (ret.get("accessSignature") != null){
-									String id = name.getValue();
+									String id = ret.get("userId").toString();
 									String devName = "";
 									if (ret.get("nickname") != null && !((JSONString)ret.get("nickname")).stringValue().equals(""))
 										devName = ((JSONString)ret.get("nickname")).stringValue();

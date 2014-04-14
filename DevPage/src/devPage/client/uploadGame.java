@@ -52,8 +52,8 @@ public class uploadGame extends Composite {
 				SessionInfo info = SessionInfo.getSessionInfo();
 				
 				JSONObject data = new JSONObject();
-			//	data.put("developerId",new JSONNumber(Double.parseDouble(info.getDevId())));
-				data.put("developerId",new JSONString(info.getDevId()));
+				//data.put("userId",new JSONNumber(Double.parseDouble(info.getDevId())));
+				data.put("userId",new JSONString(info.getDevId()));
 				data.put("accessSignature",new JSONString(info.getSignature()));
 				data.put("gameName",new JSONString(name.getValue()));
 				data.put("url",new JSONString(url.getValue()));
@@ -67,7 +67,7 @@ public class uploadGame extends Composite {
 				pics.put("icon", new JSONString("a.c.com"));
 				data.put("pic",pics);
 				
-				String url = "http://2-dot-smg-server.appspot.com/games";
+				String url = "http://3-dot-smg-server.appspot.com/games";
 				
 				final PromptDialog dialog = PromptDialog.getDialog();
 				

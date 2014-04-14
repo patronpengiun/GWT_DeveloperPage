@@ -53,7 +53,7 @@ public class deleteGame extends Composite {
 		// get currnet developer's all games info
 		JSONObject data = new JSONObject();
 		SessionInfo info = SessionInfo.getSessionInfo();
-		String url = "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId="
+		String url = "http://3-dot-smg-server.appspot.com/gameinfo/all?userId="
 				+ info.getDevId() + "&accessSignature=" + info.getSignature();
 		//String url = "http://2.smg-server.appspot.com/gameinfo/all";
 		final PromptDialog dialog = PromptDialog.getDialog();

@@ -12,7 +12,6 @@
 	     	 <b:NavCollapse>
 		         <b:Brand>Developer Page</b:Brand>
 		         <b:Nav>
-		         	 <b:NavLink ui:field="account">Account Management</b:NavLink>
 		             <b:Dropdown text="Game Console">
 	                 	<b:NavLink ui:field="upload">Submit a Game</b:NavLink>
 	                 	<b:NavLink ui:field="update">Update a Game</b:NavLink>

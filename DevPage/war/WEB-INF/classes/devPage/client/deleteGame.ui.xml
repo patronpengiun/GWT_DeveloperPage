@@ -15,7 +15,7 @@
   </b:Hero>
   
   
-   <g:FlexTable ui:field="table" styleName="{style.table-style}" borderWidth="2" />
+   <g:FlexTable ui:field="table" addStyleNames="{style.table-style}" borderWidth="2" />
  
 
    <b:Paragraph ui:field="noGameWarning"></b:Paragraph>

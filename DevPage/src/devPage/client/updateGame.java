@@ -69,7 +69,7 @@ public class updateGame extends Composite {
 				
 				JSONObject data = new JSONObject();
 			//	data.put("developerId",new JSONNumber(Double.parseDouble(info.getDevId())));
-				data.put("developerId",new JSONString(info.getDevId()));
+				data.put("userId",new JSONString(info.getDevId()));
 				data.put("accessSignature",new JSONString(info.getSignature()));
 				data.put("gameName",new JSONString(name.getValue()));
 				data.put("url",new JSONString(gameurl.getValue()));
@@ -77,7 +77,7 @@ public class updateGame extends Composite {
 				data.put("height",new JSONNumber(Double.parseDouble(length.getValue())));
 				data.put("description",new JSONString(description.getValue()));
 				
-				String url = "http://2-dot-smg-server.appspot.com/games/" + updateGameId;
+				String url = "http://3-dot-smg-server.appspot.com/games/" + updateGameId;
 				
 				final PromptDialog dialog = PromptDialog.getDialog();
 				
