@@ -12,16 +12,35 @@
     <title>Developer Page</title>
   </head>
 
-  <body>
-  	
-    <button id="pay">Buy Token</button>
-  	<div class="returndata" id="output"></div>
+  <body>  	
   	<div id="fb-root"></div>
-    <script>
+  	<div>
+  		<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+  		<button class="storeBtn" id="store-button"></button>
+    </div>
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+    
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+
+    <div id="NavBar"></div>
+    <div id="stage"></div>
+    <div id="content"></div>
+
+    
+		<div id="prompt-modal"></div>
+	
+		<div id="signup-modal"></div>
+	
+	
+	<script>
       window.fbAsyncInit = function() {
         FB.init({
           appId      : 745520798812858,
-          cookie     : true,
           status     : true,
           xfbml      : true
         });
@@ -33,22 +52,6 @@
     	      FB.login();
     	    }
     	  });
-    	  
-    	function buy() {
-          var obj = {
-            method: 'pay',
-            action: 'purchaseitem',
-            product: 'http://3a-dot-demodevpage.appspot.com/token.html'
-          };
-
-          FB.ui(obj, function(data) {
-              console.log(data);
-            });
-            
-        }
-
-       document.getElementById('pay').onclick = function() {buy()};
-    	  
     	};
 
       (function(d, s, id){
@@ -58,60 +61,43 @@
          js.src = "//connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
+            
+      var storeButton = document.getElementById("store-button"); 	
+   	  storeButton.setAttribute('onclick', 'javascript:showStore()');
+    	
+    	var mainArea = document.getElementById('stage');
+    	
+    	
+			function showStore() {
+   			var background = document.createElement('div');
+   			background.id = 'modal_background';
+   			mainArea.appendChild(background);
+
+   			var storeContainer = document.createElement('div');
+   			storeContainer.id = 'store';
+   			mainArea.appendChild(storeContainer);
+
+   			var closeStoreButton = document.createElement('div');
+   			closeStoreButton.id = 'close_button';
+   			closeStoreButton.setAttribute('onclick', 'javascript:closeStore()');
+   			mainArea.appendChild(closeStoreButton);
+
+   			buildStore();
+
+   			$(background).animate({'opacity': 1}, 'fast');
+   			$(storeContainer).animate({'opacity': 1}, 'normal');
+   			$(closeStoreButton).animate({'opacity': 1}, 'normal');
+			}
+
+			function closeStore() {
+  			$('#store').animate({'opacity': 0}, 'fast', function(){this.remove()});
+  			$('#close_button').animate({'opacity': 0}, 'fast', function(){this.remove()});
+  			$('#modal_background').animate({'opacity': 0, }, 'normal', function(){this.remove()});
+			}
+       
     </script>
-<!--     
-    <script type="text/javascript">
-     window.fbAsyncInit = function() {
-        FB.init({
-          appId      : 745520798812858,
-          status     : true,
-          cookie     : true,
-          xfbml      : true
-        });
-
-        function buy() {
-          var obj = {
-            method: 'pay',
-            action: 'purchaseitem',
-            product: 'http://3a-dot-demodevpage.appspot.com/token.html'
-          };
-
-          FB.ui(obj, function(data) {
-              console.log(data);
-            });
-        }
-
-        document.getElementById('pay').onclick = function() {buy()};
-      };
-      
-      // Load the SDK Asynchronously
-      (function(d){
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-      }(document));
-    </script>
--->     
-    <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-  
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
     
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-      </div>
-    </noscript>
-
-    <div id="NavBar"></div>
-    
-    <div id="content"></div>
-    
-	<div id="prompt-modal"></div>
-	
-	<div id="signup-modal"></div>
+    <script type="text/javascript" language="javascript" src="store.js"></script>
     
   </body>
 </html>

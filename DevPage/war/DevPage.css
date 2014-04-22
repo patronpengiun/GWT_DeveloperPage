@@ -6,6 +6,7 @@
 
 #welcome{
 	text-align:center;
+	z-index:-1;
 }
 
 /** Example rules used by the template application (remove for your app) */
@@ -21,6 +22,149 @@ h1 {
   display: block;
   font-size: 16pt;
 }
+
+/** style for token store */
+.storeBtn {
+	width: 48px;
+	height: 48px; 
+	border-radius:20px;
+	float:right;
+	background-image: url(images/storeBtn.png);
+	background-position:center;
+}
+/*
+.btnDiv {
+	margin-right:15px;
+	margin-left:auto;
+}
+*/
+.stats_display {
+  width: 65px;
+  height: 25px;
+  position: absolute;
+  background-color: #e34c32;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #262626;
+  font: 15pt "Arial Narrow", Arial, sans-serif;
+  color: white;
+  text-align: left;
+  margin: 5px auto;
+}
+
+.stats_display img {
+  margin-left: -20px;
+  margin-top: -7px;
+  margin-right: 2px;
+  vertical-align: top;
+}
+
+#modal_background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+}
+
+#store {
+  position: absolute;
+  background-image: url("../images/modal_box.png");
+  width: 420px;
+  height: 500px;
+  top: 250px;
+  left: 460px;
+  padding: 5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #e34c32;
+  border-color: #262626;
+  z-index:100;
+  color: #ebebeb;
+  font: 28pt "Arial Narrow", Arial, sans-serif;
+  overflow: hidden;
+  opacity: 0;
+}
+
+#store h1 {
+  display: inline-block;
+  color: white;
+  font: 28pt "Arial Narrow", Arial, sans-serif;
+}
+
+#close_button {
+  width:50px;
+  height:50px;
+  top:55px;
+  background-image: url("../images/close_button.png");
+  position: relative;
+  left: 870px;
+  z-index:101;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#store_contents {
+  position: absolute;
+  top: 105px;
+  width: 100%;
+  height: 350px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#store_contents h3, #store_contents select {
+  display:inline;
+  font-size: 25px;
+}
+
+
+.store_package {
+  display: inline-block !important;
+  width: 97%;
+  height: 45px;
+  margin: 0px 0px 5px 0 !important;
+  background-color: #444;
+  border-top: 10px black;
+  padding-top: 0px;
+  line-height: 41px;
+  text-align: left;
+  border: solid 3px #262626;
+}
+
+.store_package span {
+  margin-left: 40px;
+}
+
+.store_package h3 {
+  display: inline-block !important;
+  margin: 10px;
+  font: 18pt "Arial Narrow", Arial, sans-serif;
+  min-width: 90px;
+}
+
+.store_package .quantity {
+  min-width: 100px;
+}
+
+.button_small {
+  width: 70px;
+  height: 27px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  background-color: #e34c32;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #262626;
+  font: 15pt "Arial Narrow", Arial, sans-serif;
+  margin: 0px 0px 0px 0px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 
 #navbar-username, #navbar-password{
 	margin-right:5px;
