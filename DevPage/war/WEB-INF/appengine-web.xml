@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
   <application>demodevpage</application>
+<<<<<<< HEAD
+  <version>4</version>
+=======
   <version>3a</version>
+>>>>>>> 92ed943cb6765efd9ad255da043b0d1cb064beca
 
   <!--
     Allows App Engine to send multiple requests to one instance in parallel:
