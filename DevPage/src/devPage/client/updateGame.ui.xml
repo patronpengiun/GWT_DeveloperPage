@@ -61,20 +61,9 @@
       </b:Controls>
 	  </b:ControlGroup>
 		
-		<b:ControlGroup>
-      <b:ControlLabel for="input03">Width</b:ControlLabel>
-      <b:Controls>
-        	<b:TextBox alternateSize="SMALL" b:id="width" ui:field="width"></b:TextBox>
-      </b:Controls>
-      <b:ControlLabel for="input04">Length</b:ControlLabel>
-      <b:Controls>
-        	<b:TextBox alternateSize="SMALL" b:id="length" ui:field="length"></b:TextBox>
-      </b:Controls>
-	  </b:ControlGroup>
-		
-		<b:ControlGroup>
+	<b:ControlGroup>
 			<b:ControlLabel for="select03">Has AI</b:ControlLabel>
-      <b:Controls>
+     		<b:Controls>
       		<b:ListBox b:id="hasAI" ui:field="AI">
 									<g:item>Yes</g:item>
 									<g:item>No</g:item>

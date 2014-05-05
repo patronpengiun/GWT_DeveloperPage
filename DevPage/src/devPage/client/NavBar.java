@@ -30,17 +30,12 @@ public class NavBar extends Composite{
 	@UiField
 	NavLink upload,update,delete,dashboard;
 	
-	@UiField
-	NavText welcome;
-	
 	interface NavBarUiBinder extends UiBinder<Widget, NavBar> {}
 	
 	private static NavBarUiBinder uiBinder = GWT.create(NavBarUiBinder.class);
 	
 	public NavBar(){
 		initWidget(uiBinder.createAndBindUi(this));
-		
-		setVisible(welcome.getElement(),false);
 		
 		upload.addClickHandler(new ClickHandler(){
 			@Override
@@ -65,11 +60,6 @@ public class NavBar extends Composite{
 					RootPanel.get("content").add(new deleteGame());
 	          }
 		});
-	}
-	
-	public void showWelcome(String content){
-		welcome.setText(content);
-		setVisible(welcome.getElement(),true);
 	}
 	
 }

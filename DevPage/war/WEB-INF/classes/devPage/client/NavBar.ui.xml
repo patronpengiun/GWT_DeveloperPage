@@ -19,7 +19,6 @@
 	            	 </b:Dropdown>	
 		             <b:NavLink ui:field="dashboard">Dash Board</b:NavLink>
 		         </b:Nav>
-	         	 <b:NavText ui:field="welcome" alignment="RIGHT" addStyleNames="{style.welcome-span}"></b:NavText>
 	         </b:NavCollapse>
 	     </b:Navbar>
 	 </g:FlowPanel>

@@ -45,7 +45,7 @@ public class updateGame extends Composite {
 	Button updateBtn, backBtn;
 	
 	@UiField
-	TextBox name,gameurl,width,length;
+	TextBox name,gameurl;
 	
 	@UiField
 	ListBox number,turnBase,AI;
@@ -68,24 +68,23 @@ public class updateGame extends Composite {
 				SessionInfo info = SessionInfo.getSessionInfo();
 				
 				JSONObject data = new JSONObject();
-			//	data.put("developerId",new JSONNumber(Double.parseDouble(info.getDevId())));
-				data.put("userId",new JSONString(info.getDevId()));
+				Double _id = Double.parseDouble(info.getDevId());
+				data.put("developerId",new JSONString(_id.toString()));
+				//data.put("userId",new JSONString(info.getDevId()));
 				data.put("accessSignature",new JSONString(info.getSignature()));
 				data.put("gameName",new JSONString(name.getValue()));
 				data.put("url",new JSONString(gameurl.getValue()));
-				data.put("width",new JSONNumber(Double.parseDouble(width.getValue())));
-				data.put("height",new JSONNumber(Double.parseDouble(length.getValue())));
+				//data.put("width",new JSONNumber(Double.parseDouble(width.getValue())));
+				//data.put("height",new JSONNumber(Double.parseDouble(length.getValue())));
 				data.put("description",new JSONString(description.getValue()));
 				
-				String url = "http://3-dot-smg-server.appspot.com/games/" + updateGameId;
-				
-				final PromptDialog dialog = PromptDialog.getDialog();
+				String url = "http://smg-server.appspot.com/games/" + updateGameId;
 				
 				RequestBuilder builder = new RequestBuilder(RequestBuilder.PUT,url); 
 				try{
 						builder.sendRequest(data.toString(), new RequestCallback(){
 						public void onError(Request request, Throwable exception) {
-							dialog.show("Oops", "Update failed, please try again.");
+							Window.alert("Update failed, please try again.");
 						} 
 						
 						public void onResponseReceived(Request request, Response response) 
@@ -94,33 +93,33 @@ public class updateGame extends Composite {
 								JSONObject ret = (JSONObject)JSONParser.parseStrict(response.getText());
 								if (ret.get("success") != null){
 									RootPanel.get("content").clear();
-									dialog.show("","The game has been successfully updated");
+									Window.alert("The game has been successfully updated");
 								}
 								else {
 									if (ret.get("error") != null){
 										String error = ((JSONString)ret.get("error")).stringValue();
 										if (error.equals("GAME_EXISTS"))
-											dialog.show("Oops", "The name fot the game is already occupied, please try another name.");
+											Window.alert("The name fot the game is already occupied, please try another name.");
 										else if (error.equals("MISSING_INFO"))
-												dialog.show("Oops", "Required information is missing, please try again.");
+												Window.alert("Required information is missing, please try again.");
 										else if (error.equals("WRONG_ACCESS_SIGNATURE"))
-												dialog.show("Oops", "Validation failed, please log in again.");
+												Window.alert("Validation failed, please log in again.");
 										else
-											dialog.show("Oops", "Update failed, please try again.");
+											Window.alert("Update failed, please try again.");
 									}
 									else{
-										dialog.show("Oops", "Update failed, please try again.");
+										Window.alert("Update failed, please try again.");
 									}
 								}
 						    }
 							else {
-								dialog.show("Oops", "Update failed, please try again.");
+								Window.alert("Update failed, please try again.");
 						    } 
 						} 
 					});
 				}
 				catch (RequestException e){
-					dialog.show("Oops", "Update failed, please try again.");
+					Window.alert("Update failed, please try again.");
 				}
 	          }
 		});	
@@ -134,16 +133,15 @@ public class updateGame extends Composite {
 		
 		JSONObject data = new JSONObject();
 		SessionInfo info = SessionInfo.getSessionInfo();
-		String url = "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId="
+		String url = "http://smg-server.appspot.com/gameinfo/all?developerId="
 				+ info.getDevId() + "&accessSignature=" + info.getSignature();
 		//String url = "http://2.smg-server.appspot.com/gameinfo/all";
-		final PromptDialog dialog = PromptDialog.getDialog();
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 		try {
 			builder.sendRequest(data.toString(), new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
-					dialog.show("Oops","Getting your games' info failed, please try again.");
+					Window.alert("Getting your games' info failed, please try again.");
 				}
 
 				public void onResponseReceived(Request request,
@@ -162,15 +160,15 @@ public class updateGame extends Composite {
 								throw new JSONException();
 							}
 						} catch (JSONException e) {
-							dialog.show("Oops", "No data available");
+							Window.alert("No data available");
 						}
 					} else {
-						dialog.show("Oops", "Could not access server.");
+						Window.alert("Could not access server.");
 					}
 				}
 			});
 		} catch (RequestException e) {
-			dialog.show("Oops", "Getting your games' info failed, please try again.");
+			Window.alert("Getting your games' info failed, please try again.");
 		}
 
 	}
@@ -218,15 +216,13 @@ public class updateGame extends Composite {
 				 */
 				JSONObject data = new JSONObject();
 				SessionInfo info = SessionInfo.getSessionInfo();
-				String url = "http://2.smg-server.appspot.com/games/"  + gameID.substring(1, gameID.length()-1);
-
-				final PromptDialog dialog = PromptDialog.getDialog();
+				String url = "http://smg-server.appspot.com/games/"  + gameID.substring(1, gameID.length()-1);
 
 				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 				try {
 					builder.sendRequest("", new RequestCallback() {
 						public void onError(Request request, Throwable exception) {
-							dialog.show("Oops","Delet game failed, please try again.");
+							Window.alert("Delet game failed, please try again.");
 						}
 
 						public void onResponseReceived(Request request,Response response) {
@@ -239,22 +235,17 @@ public class updateGame extends Composite {
 									name.setText(((JSONString)ret.get("gameName")).stringValue());
 									description.setText(((JSONString)ret.get("description")).stringValue());
 									gameurl.setText(((JSONString)ret.get("url")).stringValue());
-									width.setText(((Double)((JSONNumber)ret.get("width")).doubleValue()).toString());
-									length.setText(((Double)((JSONNumber)ret.get("height")).doubleValue()).toString());
-									
-
 								} else {
-									dialog.show("Oops",
-											"The game delete failed, please try later.");
+									Window.alert("The game delete failed, please try later.");
 								}
 
 							} else {
-								dialog.show("Oops", "Couldn't send the request.");
+								Window.alert("Couldn't send the request.");
 							}
 						}
 					});
 				} catch (RequestException e) {
-					dialog.show("Oops", "Login failed, please try again.");
+					Window.alert("Login failed, please try again.");
 				}
 
 			}

@@ -31,7 +31,7 @@ public class uploadGame extends Composite {
 	Button submitBtn;
 	
 	@UiField
-	TextBox name,url,width,height;
+	TextBox name,url;
 	
 	@UiField
 	ListBox token,turnBase,AI;
@@ -53,12 +53,12 @@ public class uploadGame extends Composite {
 				
 				JSONObject data = new JSONObject();
 				//data.put("userId",new JSONNumber(Double.parseDouble(info.getDevId())));
-				data.put("userId",new JSONString(info.getDevId()));
+				data.put("developerId",new JSONString(info.getDevId()));
 				data.put("accessSignature",new JSONString(info.getSignature()));
 				data.put("gameName",new JSONString(name.getValue()));
 				data.put("url",new JSONString(url.getValue()));
-				data.put("width",new JSONNumber(Double.parseDouble(width.getValue())));
-				data.put("height",new JSONNumber(Double.parseDouble(height.getValue())));
+				//data.put("width",new JSONNumber(Double.parseDouble(width.getValue())));
+				//data.put("height",new JSONNumber(Double.parseDouble(height.getValue())));
 				data.put("description",new JSONString(description.getValue()));
 				JSONObject pics = new JSONObject();
 				JSONArray shots = new JSONArray();
@@ -67,15 +67,13 @@ public class uploadGame extends Composite {
 				pics.put("icon", new JSONString("a.c.com"));
 				data.put("pic",pics);
 				
-				String url = "http://3-dot-smg-server.appspot.com/games";
-				
-				final PromptDialog dialog = PromptDialog.getDialog();
+				String url = "http://smg-server.appspot.com/games";
 				
 				RequestBuilder builder = new RequestBuilder(RequestBuilder.POST,url); 
 				try{
 						builder.sendRequest(data.toString(), new RequestCallback(){
 						public void onError(Request request, Throwable exception) {
-							dialog.show("Oops", "Submission failed, please try again.");
+							Window.alert("Submission failed, please try again.");
 						} 
 						
 						public void onResponseReceived(Request request, Response response) 
@@ -85,33 +83,33 @@ public class uploadGame extends Composite {
 								if (ret.get("gameId") != null){
 									String id = ret.get("gameId").toString();
 									RootPanel.get("content").clear();
-									dialog.show("","The game has been successfully sumbmitted. The ID for this game is " + id + ".");
+									Window.alert("The game has been successfully sumbmitted. The ID for this game is " + id + ".");
 								}
 								else {
 									if (ret.get("error") != null){
 										String error = ((JSONString)ret.get("error")).stringValue();
 										if (error.equals("GAME_EXISTS"))
-											dialog.show("Oops", "The name fot the game is already occupied, please try another name.");
+											Window.alert("The name fot the game is already occupied, please try another name.");
 										else if (error.equals("MISSING_INFO"))
-												dialog.show("Oops", "Required information is missing, please try again.");
+											Window.alert("Required information is missing, please try again.");
 										else if (error.equals("WRONG_ACCESS_SIGNATURE"))
-												dialog.show("Oops", "Validation failed, please log in again.");
+											Window.alert("Validation failed, please log in again.");
 										else
-											dialog.show("Oops", "Submission failed, please try again.");
+											Window.alert("Submission failed, please try again.");
 									}
 									else{
-										dialog.show("Oops", "Submission failed, please try again.");
+										Window.alert("Submission failed, please try again.");
 									}
 								}
 						    }
 							else {
-								dialog.show("Oops", "Submission failed, please try again.");
+								Window.alert("Submission failed, please try again.");
 						    } 
 						} 
 					});
 				}
 				catch (RequestException e){
-					dialog.show("Oops", "Submission failed, please try again.");
+					Window.alert("Submission failed, please try again.");
 				}
 	          }
 		});	

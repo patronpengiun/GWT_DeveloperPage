@@ -53,16 +53,15 @@ public class deleteGame extends Composite {
 		// get currnet developer's all games info
 		JSONObject data = new JSONObject();
 		SessionInfo info = SessionInfo.getSessionInfo();
-		String url = "http://3-dot-smg-server.appspot.com/gameinfo/all?userId="
+		String url = "http://smg-server.appspot.com/gameinfo/all?developerId="
 				+ info.getDevId() + "&accessSignature=" + info.getSignature();
 		//String url = "http://2.smg-server.appspot.com/gameinfo/all";
-		final PromptDialog dialog = PromptDialog.getDialog();
 
 		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
 		try {
 			builder.sendRequest(data.toString(), new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
-					dialog.show("Oops","Getting your games' info failed, please try again.");
+					Window.alert("Oops, getting your games' info failed, please try again.");
 				}
 
 				public void onResponseReceived(Request request,
@@ -81,15 +80,15 @@ public class deleteGame extends Composite {
 								throw new JSONException();
 							}
 						} catch (JSONException e) {
-							dialog.show("Oops", "Could not parse JSON");
+							Window.alert("Could not parse JSON");
 						}
 					} else {
-						dialog.show("Oops", "Could not access server.");
+						Window.alert("Could not access server.");
 					}
 				}
 			});
 		} catch (RequestException e) {
-			dialog.show("Oops", "Login failed, please try again.");
+			Window.alert("Login failed, please try again.");
 		}
 
 	}
@@ -137,17 +136,15 @@ public class deleteGame extends Composite {
 				 */
 				JSONObject data = new JSONObject();
 				SessionInfo info = SessionInfo.getSessionInfo();
-				String url = "http://2.smg-server.appspot.com/games/"  + gameID.substring(1, gameID.length()-1) 
+				String url = "http://smg-server.appspot.com/games/"  + gameID.substring(1, gameID.length()-1) 
 						+ "?developerId=" + info.getDevId()
 						+ "&accessSignature=" + info.getSignature();
-
-				final PromptDialog dialog = PromptDialog.getDialog();
 
 				RequestBuilder builder = new RequestBuilder(RequestBuilder.DELETE, url);
 				try {
 					builder.sendRequest("", new RequestCallback() {
 						public void onError(Request request, Throwable exception) {
-							dialog.show("Oops","Delet game failed, please try again.");
+							Window.alert("Delet game failed, please try again.");
 						}
 
 						public void onResponseReceived(Request request,Response response) {
@@ -157,24 +154,23 @@ public class deleteGame extends Composite {
 								JSONObject ret = (JSONObject) JSONParser.parseStrict(response.getText());
 
 								if (ret.get("success") != null) {
-									dialog.show("Success","The game has been deleted.");
+									Window.alert("The game has been deleted.");
 									
 									//table.clear();
 									panel.clear();
 									panel.add(new deleteGame());
 
 								} else {
-									dialog.show("Oops",
-											"The game delete failed, please try later.");
+									Window.alert("The game delete failed, please try later.");
 								}
 
 							} else {
-								dialog.show("Oops", "Couldn't send the request.");
+								Window.alert("Couldn't send the request.");
 							}
 						}
 					});
 				} catch (RequestException e) {
-					dialog.show("Oops", "Login failed, please try again.");
+					Window.alert("Login failed, please try again.");
 				}
 
 			}

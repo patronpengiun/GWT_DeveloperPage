@@ -45,20 +45,8 @@
       </b:Controls>
 	  </b:ControlGroup>
 		
-		<b:ControlGroup>
-      <b:ControlLabel for="input03">Width *</b:ControlLabel>
-      <b:Controls>
-        	<b:TextBox alternateSize="SMALL" b:id="width" ui:field="width"></b:TextBox>
-      </b:Controls>
-      
-	  </b:ControlGroup>
+
 	  
-	  <b:ControlGroup>
-      <b:ControlLabel for="input04">Height *</b:ControlLabel>
-      <b:Controls>
-        	<b:TextBox alternateSize="SMALL" b:id="height" ui:field="height"></b:TextBox>
-      </b:Controls>
-	  </b:ControlGroup>
 		
 		<b:ControlGroup>
 			<b:ControlLabel for="select03">Has AI</b:ControlLabel>
