@@ -18,14 +18,7 @@
 	                 	<b:NavLink ui:field="delete">Delete a Game</b:NavLink>
 	            	 </b:Dropdown>	
 		             <b:NavLink ui:field="dashboard">Dash Board</b:NavLink>
-		             <b:NavLink ui:field="database">Database Query</b:NavLink>
 		         </b:Nav>
-	         	 <b:NavForm alignment="RIGHT" size="2" ui:field="form">
-	         	 	<b:TextBox placeholder="username" alternateSize="SMALL" ui:id="navbar-username" ui:field="name"></b:TextBox>
-	         	 	<b:PasswordTextBox placeholder="password" alternateSize="SMALL" ui:id="navbar-password" ui:field="password"></b:PasswordTextBox>
-	         	 	<b:Button addStyleNames="{style.in-btn}" ui:field="inBtn">Sign in</b:Button>
-	         	 	<b:Button ui:field="upBtn">Sign up</b:Button>
-	         	 </b:NavForm>
 	         	 <b:NavText ui:field="welcome" alignment="RIGHT" addStyleNames="{style.welcome-span}"></b:NavText>
 	         </b:NavCollapse>
 	     </b:Navbar>

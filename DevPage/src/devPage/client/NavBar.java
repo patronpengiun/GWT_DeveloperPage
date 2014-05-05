@@ -28,16 +28,7 @@ import com.google.gwt.uibinder.client.UiField;
 
 public class NavBar extends Composite{
 	@UiField
-	NavLink upload,update,delete,dashboard,database;
-	
-	@UiField
-	Button upBtn,inBtn;
-	
-	@UiField
-	TextBox name;
-	
-	@UiField
-	PasswordTextBox password;
+	NavLink upload,update,delete,dashboard;
 	
 	@UiField
 	NavText welcome;
@@ -74,96 +65,9 @@ public class NavBar extends Composite{
 					RootPanel.get("content").add(new deleteGame());
 	          }
 		});
-		
-		upBtn.addClickHandler(new ClickHandler(){
-			@Override
-	          public void onClick(ClickEvent event) {
-					RootPanel.get("signup-modal").clear();
-					SignUpDialog dialog = new SignUpDialog();
-					RootPanel.get("signup-modal").add(dialog);
-					dialog.showModal();
-	          }
-		});
-		
-		inBtn.addClickHandler(new ClickHandler(){
-			@Override
-	          public void onClick(ClickEvent event) {
-				JSONObject data = new JSONObject();
-				
-				String url = "http://3-dot-smg-server.appspot.com/user/?email=" + name.getValue() + "&password=" + password.getValue();
-				
-				final PromptDialog dialog = PromptDialog.getDialog();
-				
-				RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,url); 
-				try{
-						builder.sendRequest(data.toString(), new RequestCallback(){
-						public void onError(Request request, Throwable exception) { 
-							dialog.show("Oops", "Login failed, please try again.");
-						} 
-						
-						public void onResponseReceived(Request request, Response response) 
-						{ 
-							if (response.getStatusCode() == 200) { 
-								JSONObject ret = (JSONObject)JSONParser.parseStrict(response.getText());
-								if (ret.get("accessSignature") != null){
-									String id = ret.get("userId").toString();
-									String devName = "";
-									if (ret.get("nickname") != null && !((JSONString)ret.get("nickname")).stringValue().equals(""))
-										devName = ((JSONString)ret.get("nickname")).stringValue();
-									else {
-										if (ret.get("firstName") != null)
-											devName += ((JSONString)ret.get("firstName")).stringValue();
-										if (ret.get("lastName") != null){
-											if (!devName.equals("")) devName += " ";
-											devName += ((JSONString)ret.get("lastName")).stringValue();
-										}
-									}
-									String signature = ((JSONString)ret.get("accessSignature")).stringValue();
-									
-									SessionInfo info = SessionInfo.getSessionInfo();
-									info.setDevId(id);
-									info.setDevName(devName);
-									info.setSignature(signature);
-									
-									dialog.show("", "Welcome back, " + devName + "!");
-									((NavBar)(RootPanel.get("NavBar").getWidget(0))).showWelcome("Welcome back, " + devName);
-								}
-								else {
-									if (ret.get("error") != null){
-										String error = ((JSONString)ret.get("error")).stringValue();
-										if (error.equals("WRONG_PASSWORD"))
-											dialog.show("Oops", "Wrong password, please try again.");
-										else {
-											if (error.equals("WRONG_DEVELOPER_ID"))
-												dialog.show("Oops", "Invalid ID, please try again.");
-											else 
-												dialog.show("Oops", "Login failed, please try again.");
-										}
-									}
-									else{
-										dialog.show("Oops", "Login failed, please try again.");
-									}
-								}
-						    }
-							else { 
-								dialog.show("Oops", "Login failed, please try again.");
-						    } 
-						} 
-					});
-				}
-				catch (RequestException e){
-					dialog.show("Oops", "Login failed, please try again.");
-				}
-	          }
-		});
-		
 	}
 	
 	public void showWelcome(String content){
-		setVisible(upBtn.getElement(),false);
-		setVisible(inBtn.getElement(),false);
-		setVisible(name.getElement(),false);
-		setVisible(password.getElement(),false);
 		welcome.setText(content);
 		setVisible(welcome.getElement(),true);
 	}
