@@ -13,8 +13,8 @@
 	<g:HTMLPanel>
 	
 	<b:Hero>
-    <b:Heading size="2">Game Update</b:Heading>
-    <b:Paragraph>Please submit your game update info below.</b:Paragraph>
+    <b:Heading ui:field="headUpd" size="2">Game Update</b:Heading>
+    <b:Paragraph ui:field="subheadUpd">Please submit your game update info below.</b:Paragraph>
 	</b:Hero>
 	
 	<g:FlexTable ui:field="table" styleName="{style.table-style}" borderWidth="2" />
@@ -25,7 +25,7 @@
 	<b:Form ui:field="form" type="HORIZONTAL">
     <b:Fieldset>
     <b:ControlGroup>
-      <b:ControlLabel for="input01">Game Name</b:ControlLabel>
+      <b:ControlLabel ui:field="gameName" for="input01">Game Name</b:ControlLabel>
       <b:Controls>
         <!-- If you add id attribute to element,You should use b:id attribute. -->
         	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="name"></b:TextBox>
@@ -33,7 +33,7 @@
     </b:ControlGroup>
     
     <b:ControlGroup>
-      <b:ControlLabel for="select01">Player Number</b:ControlLabel>
+      <b:ControlLabel ui:field="playerNum" for="select01">Player Number</b:ControlLabel>
       <b:Controls>
       		<b:ListBox b:id="playerNum" ui:field="number">
 									<g:item>2</g:item>
@@ -45,7 +45,7 @@
 	  </b:ControlGroup>
 	  
 	  <b:ControlGroup>
-			<b:ControlLabel for="select02">is Turn Based</b:ControlLabel>
+			<b:ControlLabel ui:field="turnBased" for="select02">is Turn Based</b:ControlLabel>
       <b:Controls>
       		<b:ListBox b:id="isTurnBased" ui:field="turnBase">
 									<g:item>Yes</g:item>
@@ -55,14 +55,14 @@
 		</b:ControlGroup>	
 		
 		<b:ControlGroup>
-      <b:ControlLabel for="input02">Game URL</b:ControlLabel>
+      <b:ControlLabel ui:field="gameURL" for="input02">Game URL</b:ControlLabel>
       <b:Controls>
         	<b:TextBox alternateSize="XLARGE" b:id="gameUrl" ui:field="gameurl"></b:TextBox>
       </b:Controls>
 	  </b:ControlGroup>
 		
 	<b:ControlGroup>
-			<b:ControlLabel for="select03">Has AI</b:ControlLabel>
+			<b:ControlLabel ui:field="ifAI" for="select03">Has AI</b:ControlLabel>
      		<b:Controls>
       		<b:ListBox b:id="hasAI" ui:field="AI">
 									<g:item>Yes</g:item>
@@ -72,7 +72,7 @@
 		</b:ControlGroup>	
 		
 		<b:ControlGroup>
-				<b:ControlLabel for="fileInput">Upload Screenshot</b:ControlLabel>
+				<b:ControlLabel ui:field="pic" for="fileInput">Upload Screenshot</b:ControlLabel>
 						<b:Controls>
 							<b:FileUpload b:id="screenShot"></b:FileUpload>
     				</b:Controls>
@@ -81,7 +81,7 @@
 						
 		
 		<b:ControlGroup>
-			<b:ControlLabel for="input06">Game Description</b:ControlLabel>
+			<b:ControlLabel ui:field="gameDetail" for="input06">Game Description</b:ControlLabel>
 			<b:Controls>
       		<b:TextArea b:id="textarea" visibleLines="6" ui:field="description"></b:TextArea> 
 			</b:Controls>	

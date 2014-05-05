@@ -1,7 +1,9 @@
 package devPage.client;
 
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.ControlLabel;
 import com.github.gwtbootstrap.client.ui.Form;
+import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.ListBox;
 import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.github.gwtbootstrap.client.ui.TextArea;
@@ -53,15 +55,47 @@ public class updateGame extends Composite {
 	@UiField
 	TextArea description;
 	
+	@UiField
+	Heading headUpd;
+	
+	@UiField
+	Paragraph subheadUpd;
+	
+	
+	@UiField
+	ControlLabel gameName, playerNum, turnBased, gameURL, ifAI, pic, gameDetail;
+	
 	private String updateGameId;
 	
-	
+	final UIConstants myConstants = GWT.create(UIConstants.class);
 	private static updateGameUiBinder uiBinder = GWT.create(updateGameUiBinder.class);
 
 	interface updateGameUiBinder extends UiBinder<Widget, updateGame> {}
 	
 	public updateGame() {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		
+		headUpd.setText(myConstants.headUpd());
+		subheadUpd.setText(myConstants.subheadUpd());
+		updateBtn.setText(myConstants.upDate());
+		backBtn.setText(myConstants.back());
+		
+		gameName.getElement().setInnerText(myConstants.gameName());
+		playerNum.getElement().setInnerText(myConstants.playerNum());
+		turnBased.getElement().setInnerText(myConstants.turnBased());
+		gameURL.getElement().setInnerText(myConstants.gameURL());
+		ifAI.getElement().setInnerText(myConstants.ifAI());
+		pic.getElement().setInnerText(myConstants.pic());
+		gameDetail.getElement().setInnerText(myConstants.gameDetail());
+
+		turnBase.setItemText(0, myConstants.yes());
+		turnBase.setItemText(1, myConstants.no());
+		AI.setItemText(0, myConstants.yes());
+		AI.setItemText(1, myConstants.no());
+		
+		
+		
 		updateBtn.addClickHandler(new ClickHandler() {
 			@Override
 	          public void onClick(ClickEvent event) {
@@ -84,7 +118,7 @@ public class updateGame extends Composite {
 				try{
 						builder.sendRequest(data.toString(), new RequestCallback(){
 						public void onError(Request request, Throwable exception) {
-							Window.alert("Update failed, please try again.");
+							Window.alert(myConstants.updateFail());
 						} 
 						
 						public void onResponseReceived(Request request, Response response) 
@@ -93,33 +127,33 @@ public class updateGame extends Composite {
 								JSONObject ret = (JSONObject)JSONParser.parseStrict(response.getText());
 								if (ret.get("success") != null){
 									RootPanel.get("content").clear();
-									Window.alert("The game has been successfully updated");
+									Window.alert(myConstants.updateSuc());
 								}
 								else {
 									if (ret.get("error") != null){
 										String error = ((JSONString)ret.get("error")).stringValue();
 										if (error.equals("GAME_EXISTS"))
-											Window.alert("The name fot the game is already occupied, please try another name.");
+											Window.alert(myConstants.nameOccupied());
 										else if (error.equals("MISSING_INFO"))
-												Window.alert("Required information is missing, please try again.");
+												Window.alert(myConstants.inforMiss());
 										else if (error.equals("WRONG_ACCESS_SIGNATURE"))
-												Window.alert("Validation failed, please log in again.");
+												Window.alert(myConstants.validFail());
 										else
-											Window.alert("Update failed, please try again.");
+											Window.alert(myConstants.updateFail());
 									}
 									else{
-										Window.alert("Update failed, please try again.");
+										Window.alert(myConstants.updateFail());
 									}
 								}
 						    }
 							else {
-								Window.alert("Update failed, please try again.");
+								Window.alert(myConstants.updateFail());
 						    } 
 						} 
 					});
 				}
 				catch (RequestException e){
-					Window.alert("Update failed, please try again.");
+					Window.alert(myConstants.updateFail());
 				}
 	          }
 		});	
@@ -141,7 +175,7 @@ public class updateGame extends Composite {
 		try {
 			builder.sendRequest(data.toString(), new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
-					Window.alert("Getting your games' info failed, please try again.");
+					Window.alert(myConstants.getInfoFail());
 				}
 
 				public void onResponseReceived(Request request,
@@ -160,15 +194,15 @@ public class updateGame extends Composite {
 								throw new JSONException();
 							}
 						} catch (JSONException e) {
-							Window.alert("No data available");
+							Window.alert(myConstants.noData());
 						}
 					} else {
-						Window.alert("Could not access server.");
+						Window.alert(myConstants.accessServerFail());
 					}
 				}
 			});
 		} catch (RequestException e) {
-			Window.alert("Getting your games' info failed, please try again.");
+			Window.alert(myConstants.getInfoFail());
 		}
 
 	}
@@ -177,7 +211,7 @@ public class updateGame extends Composite {
 		noGameWarning.setVisible(false);
 		if(array.size() == 0){
 			
-			noGameWarning.setText("Sorry, you haven't submitted game.");
+			noGameWarning.setText(myConstants.noGame());
 			noGameWarning.setVisible(true);
 			//panel.add(noGameWarning);
 		}
@@ -236,16 +270,16 @@ public class updateGame extends Composite {
 									description.setText(((JSONString)ret.get("description")).stringValue());
 									gameurl.setText(((JSONString)ret.get("url")).stringValue());
 								} else {
-									Window.alert("The game delete failed, please try later.");
+									Window.alert(myConstants.deleteFail());
 								}
 
 							} else {
-								Window.alert("Couldn't send the request.");
+								Window.alert(myConstants.cannotSendReq());
 							}
 						}
 					});
 				} catch (RequestException e) {
-					Window.alert("Login failed, please try again.");
+					Window.alert(myConstants.loginFail());
 				}
 
 			}

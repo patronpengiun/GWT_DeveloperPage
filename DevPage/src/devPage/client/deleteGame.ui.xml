@@ -11,7 +11,7 @@
   <g:HTMLPanel ui:field="panel">
   
   <b:Hero>
-    <b:Heading size="2">Game Delete</b:Heading>
+    <b:Heading ui:field="headDel" size="2">Game Delete</b:Heading>
   </b:Hero>
   
   

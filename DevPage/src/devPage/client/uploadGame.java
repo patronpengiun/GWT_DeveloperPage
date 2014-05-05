@@ -1,9 +1,14 @@
 package devPage.client;
 
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.ControlGroup;
+import com.github.gwtbootstrap.client.ui.ControlLabel;
+import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.ListBox;
+import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.github.gwtbootstrap.client.ui.TextArea;
 import com.github.gwtbootstrap.client.ui.TextBox;
+import com.google.appengine.api.memcache.MemcacheServicePb.MemcacheDeleteRequest.Item;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -39,13 +44,47 @@ public class uploadGame extends Composite {
 	@UiField
 	TextArea description;
 	
+	@UiField
+	Heading head;
+	
+	@UiField
+	Paragraph descrip;
+	
+	@UiField
+	ControlLabel gameName, ifToken, turnBased, gameURL, ifAI, pic, gameDetail;
+	
+	
 	
 	private static uploadGameUiBinder uiBinder = GWT.create(uploadGameUiBinder.class);
 
 	interface uploadGameUiBinder extends UiBinder<Widget, uploadGame> {}
 	
 	public uploadGame() {
+		
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		
+		final UIConstants myConstants = GWT.create(UIConstants.class);
+		submitBtn.setText(myConstants.SubmitGame());
+		head.setText(myConstants.SubmitGame());
+		descrip.setText(myConstants.SubmitSubHead());
+		
+		
+		gameName.getElement().setInnerText(myConstants.gameName());
+		ifToken.getElement().setInnerText(myConstants.ifToken());
+		turnBased.getElement().setInnerText(myConstants.turnBased());
+		gameURL.getElement().setInnerText(myConstants.gameURL());
+		ifAI.getElement().setInnerText(myConstants.ifAI());
+		pic.getElement().setInnerText(myConstants.pic());
+		gameDetail.getElement().setInnerText(myConstants.gameDetail());
+		token.setItemText(0, myConstants.yes());
+		token.setItemText(1, myConstants.no());
+		turnBase.setItemText(0, myConstants.yes());
+		turnBase.setItemText(1, myConstants.no());
+		AI.setItemText(0, myConstants.yes());
+		AI.setItemText(1, myConstants.no());
+		
+		
 		submitBtn.addClickHandler(new ClickHandler() {
 			@Override
 	          public void onClick(ClickEvent event) {
@@ -73,7 +112,7 @@ public class uploadGame extends Composite {
 				try{
 						builder.sendRequest(data.toString(), new RequestCallback(){
 						public void onError(Request request, Throwable exception) {
-							Window.alert("Submission failed, please try again.");
+							Window.alert(myConstants.submisstionFail());
 						} 
 						
 						public void onResponseReceived(Request request, Response response) 
@@ -83,36 +122,38 @@ public class uploadGame extends Composite {
 								if (ret.get("gameId") != null){
 									String id = ret.get("gameId").toString();
 									RootPanel.get("content").clear();
-									Window.alert("The game has been successfully sumbmitted. The ID for this game is " + id + ".");
+									Window.alert(myConstants.submissionSuc() + id + ".");
 								}
 								else {
 									if (ret.get("error") != null){
 										String error = ((JSONString)ret.get("error")).stringValue();
 										if (error.equals("GAME_EXISTS"))
-											Window.alert("The name fot the game is already occupied, please try another name.");
+											Window.alert(myConstants.nameOccupied());
 										else if (error.equals("MISSING_INFO"))
-											Window.alert("Required information is missing, please try again.");
+											Window.alert(myConstants.inforMiss());
 										else if (error.equals("WRONG_ACCESS_SIGNATURE"))
-											Window.alert("Validation failed, please log in again.");
+											Window.alert(myConstants.validFail());
 										else
-											Window.alert("Submission failed, please try again.");
+											Window.alert(myConstants.submisstionFail());
 									}
 									else{
-										Window.alert("Submission failed, please try again.");
+										Window.alert(myConstants.submisstionFail());
 									}
 								}
 						    }
 							else {
-								Window.alert("Submission failed, please try again.");
+								Window.alert(myConstants.submisstionFail());
 						    } 
 						} 
 					});
 				}
 				catch (RequestException e){
-					Window.alert("Submission failed, please try again.");
+					Window.alert(myConstants.submisstionFail());
 				}
 	          }
 		});	
+		
+		
 		
 	}
 	

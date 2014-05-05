@@ -20,8 +20,10 @@
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
   
 	<inherits name ="com.github.gwtbootstrap.Bootstrap"/>
-	
-	
+	<inherits name="com.google.gwt.i18n.I18N"/>
+	<extend-property name="locale" values="en"/>
+  <extend-property name="locale" values="zh"/>
+  
   <!-- Other module inherits                                      -->
 	<inherits name='com.github.gwtbootstrap.Bootstrap' />
 	

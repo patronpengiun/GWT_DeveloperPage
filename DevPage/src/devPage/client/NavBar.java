@@ -1,6 +1,8 @@
 package devPage.client;
 
+import com.github.gwtbootstrap.client.ui.Brand;
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Dropdown;
 import com.github.gwtbootstrap.client.ui.NavForm;
 import com.github.gwtbootstrap.client.ui.NavLink;
 import com.github.gwtbootstrap.client.ui.NavText;
@@ -30,11 +32,20 @@ public class NavBar extends Composite{
 	@UiField
 	NavLink upload,update,delete,dashboard;
 	
+	@UiField
+	Dropdown dropDown;
+	
+	@UiField
+	Brand brand;
+	
 	interface NavBarUiBinder extends UiBinder<Widget, NavBar> {}
 	
 	private static NavBarUiBinder uiBinder = GWT.create(NavBarUiBinder.class);
 	
 	public NavBar(){
+		
+		UIConstants myConstants = GWT.create(UIConstants.class);
+		
 		initWidget(uiBinder.createAndBindUi(this));
 		
 		upload.addClickHandler(new ClickHandler(){
@@ -60,6 +71,13 @@ public class NavBar extends Composite{
 					RootPanel.get("content").add(new deleteGame());
 	          }
 		});
+		
+		upload.setText(myConstants.SubmitGame());
+		update.setText(myConstants.UpdateGame());
+		delete.setText(myConstants.DeleteGame());
+		dropDown.setText(myConstants.GameConsole());
+		brand.setText(myConstants.MainPageTitle());
+		dashboard.setText(myConstants.DashBoard());
 	}
 	
 }

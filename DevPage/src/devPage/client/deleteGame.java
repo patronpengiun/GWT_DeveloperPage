@@ -3,6 +3,7 @@ package devPage.client;
 import java.util.ArrayList;
 
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.ListBox;
 import com.github.gwtbootstrap.client.ui.Paragraph;
 import com.github.gwtbootstrap.client.ui.TextArea;
@@ -41,14 +42,22 @@ public class deleteGame extends Composite {
 	@UiField
 	Paragraph noGameWarning;
 
+	@UiField
+	Heading headDel;
+	
 	private static final Binder binder = GWT.create(Binder.class);
 
 	interface Binder extends UiBinder<Widget, deleteGame> {
 	}
-
+	final UIConstants myConstants = GWT.create(UIConstants.class);
 	public deleteGame() {
 		
 		initWidget(binder.createAndBindUi(this));
+		
+		
+		headDel.setText(myConstants.DeleteGame());
+		
+		
 
 		// get currnet developer's all games info
 		JSONObject data = new JSONObject();
@@ -61,7 +70,7 @@ public class deleteGame extends Composite {
 		try {
 			builder.sendRequest(data.toString(), new RequestCallback() {
 				public void onError(Request request, Throwable exception) {
-					Window.alert("Oops, getting your games' info failed, please try again.");
+					Window.alert(myConstants.getInfoFail());
 				}
 
 				public void onResponseReceived(Request request,
@@ -80,15 +89,15 @@ public class deleteGame extends Composite {
 								throw new JSONException();
 							}
 						} catch (JSONException e) {
-							Window.alert("Could not parse JSON");
+							Window.alert(myConstants.paserJSONfail());
 						}
 					} else {
-						Window.alert("Could not access server.");
+						Window.alert(myConstants.accessServerFail());
 					}
 				}
 			});
 		} catch (RequestException e) {
-			Window.alert("Login failed, please try again.");
+			Window.alert(myConstants.loginFail());
 		}
 
 	}
@@ -97,14 +106,14 @@ public class deleteGame extends Composite {
 		noGameWarning.setVisible(false);
 		if(array.size() == 0){
 			
-			noGameWarning.setText("Sorry, you haven't submitted game.");
+			noGameWarning.setText(myConstants.noGame());
 			noGameWarning.setVisible(true);
 			panel.add(noGameWarning);
 		}
 		else{
 			table.insertRow(0);
-			table.setText(0, 0, "Game ID");
-			table.setText(0, 1, "Game Name");
+			table.setText(0, 0, myConstants.GameID());
+			table.setText(0, 1, myConstants.gameName());
 			table.setText(0, 2, "");
 			
 			JSONObject gameInfo;
@@ -154,23 +163,23 @@ public class deleteGame extends Composite {
 								JSONObject ret = (JSONObject) JSONParser.parseStrict(response.getText());
 
 								if (ret.get("success") != null) {
-									Window.alert("The game has been deleted.");
+									Window.alert(myConstants.deleteSuc());
 									
 									//table.clear();
 									panel.clear();
 									panel.add(new deleteGame());
 
 								} else {
-									Window.alert("The game delete failed, please try later.");
+									Window.alert(myConstants.deleteFail());
 								}
 
 							} else {
-								Window.alert("Couldn't send the request.");
+								Window.alert(myConstants.cannotSendReq());
 							}
 						}
 					});
 				} catch (RequestException e) {
-					Window.alert("Login failed, please try again.");
+					Window.alert(myConstants.loginFail());
 				}
 
 			}
