@@ -10,7 +10,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="DevPage.css">
     <script type="text/javascript" language="javascript" src="devpage/devpage.nocache.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript">
+    	$(document).ready(function(){
+    		$('#i18n span').click(function(event){
+    			var url = window.location.href;
+    			var index = url.search("locale");
+    			if (index < 0){
+    				if (url.search("\\?") < 0)
+    					url += "?locale=" + $(event.target).attr("name");
+    				else
+    					url += "&locale=" + $(event.target).attr("name");
+    			}
+    			else{
+    				url = url.substring(0,index+7) + $(event.target).attr("name") + url.substring(index+9);
+    			}
+    			window.location.href = url;
+    		});
+    	});
+    </script>
     <title>Developer Page</title>
+    <style>
+    	#content .control-label {
+    		width: 100px;
+    	}
+    	
+    	#content .form-horizontal .controls{
+    		margin-left: 20px;
+    		float: left;
+    	}
+    	
+    	#i18n {
+    		margin-left: 20px;
+    		margin-bottom: 3px;
+    	}
+    	
+    	#i18n img{
+    		width: 16px;
+    		height: 12px;
+    	}
+    	
+    	#i18n span{
+    		margin-right: 8px;
+    		cursor: pointer;
+    	}
+    </style>
   </head>
 
   <body>
@@ -29,6 +73,11 @@
         in order for this application to display correctly.
       </div>
     </noscript>
+    
+    <div id="i18n">
+    	<span name="en"><img src="en.png" name="en"/> English</span>
+    	<span name="zh"><img src="zh-hans.png" name="zh"/> 中文</span>
+    </div>
 
     <div id="NavBar"></div>
     <div id="stage"></div>

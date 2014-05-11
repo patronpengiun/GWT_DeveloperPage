@@ -28,14 +28,14 @@
       <b:ControlLabel ui:field="gameName" for="input01">Game Name</b:ControlLabel>
       <b:Controls>
         <!-- If you add id attribute to element,You should use b:id attribute. -->
-        	<b:TextBox alternateSize="XLARGE" b:id="gameName" ui:field="name"></b:TextBox>
+        	<b:TextBox alternateSize="SMALL" b:id="gameName" ui:field="name"></b:TextBox>
       </b:Controls>
     </b:ControlGroup>
     
     <b:ControlGroup>
       <b:ControlLabel ui:field="playerNum" for="select01">Player Number</b:ControlLabel>
       <b:Controls>
-      		<b:ListBox b:id="playerNum" ui:field="number">
+      		<b:ListBox b:id="playerNum" ui:field="number" alternateSize="SMALL">
 									<g:item>2</g:item>
 									<g:item>3</g:item>
 									<g:item>4</g:item>
@@ -47,7 +47,7 @@
 	  <b:ControlGroup>
 			<b:ControlLabel ui:field="turnBased" for="select02">is Turn Based</b:ControlLabel>
       <b:Controls>
-      		<b:ListBox b:id="isTurnBased" ui:field="turnBase">
+      		<b:ListBox b:id="isTurnBased" ui:field="turnBase" alternateSize="SMALL">
 									<g:item>Yes</g:item>
 									<g:item>No</g:item>
 								</b:ListBox>
@@ -57,14 +57,14 @@
 		<b:ControlGroup>
       <b:ControlLabel ui:field="gameURL" for="input02">Game URL</b:ControlLabel>
       <b:Controls>
-        	<b:TextBox alternateSize="XLARGE" b:id="gameUrl" ui:field="gameurl"></b:TextBox>
+        	<b:TextBox alternateSize="SMALL" b:id="gameUrl" ui:field="gameurl"></b:TextBox>
       </b:Controls>
 	  </b:ControlGroup>
 		
 	<b:ControlGroup>
 			<b:ControlLabel ui:field="ifAI" for="select03">Has AI</b:ControlLabel>
      		<b:Controls>
-      		<b:ListBox b:id="hasAI" ui:field="AI">
+      		<b:ListBox b:id="hasAI" ui:field="AI" alternateSize="SMALL">
 									<g:item>Yes</g:item>
 									<g:item>No</g:item>
 								</b:ListBox>
@@ -74,7 +74,7 @@
 		<b:ControlGroup>
 				<b:ControlLabel ui:field="pic" for="fileInput">Upload Screenshot</b:ControlLabel>
 						<b:Controls>
-							<b:FileUpload b:id="screenShot"></b:FileUpload>
+							<b:TextBox b:id="screenShot" alternateSize="SMALL"></b:TextBox>
     				</b:Controls>
 		</b:ControlGroup>
 						
@@ -83,7 +83,7 @@
 		<b:ControlGroup>
 			<b:ControlLabel ui:field="gameDetail" for="input06">Game Description</b:ControlLabel>
 			<b:Controls>
-      		<b:TextArea b:id="textarea" visibleLines="6" ui:field="description"></b:TextArea> 
+      		<b:TextArea b:id="textarea" visibleLines="6" ui:field="description" alternateSize="SMALL"></b:TextArea> 
 			</b:Controls>	
     </b:ControlGroup>
     
